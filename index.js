@@ -1,4 +1,9 @@
+// Configs
+var db_conf = require('./db_config.json');
+
+// Modules
 var express = require('express');
+
 var app = express();
 var posts = [];
 
@@ -19,9 +24,10 @@ posts.push({
     title: 'Fish Business',
     content: 'An American businessman took a vacation to a small coastal Mexican village on doctor’s orders. Unable to sleep after an urgent phone call from the office the first morning, he walked out to the pier to clear his head. A small boat with just one fisherman had docked, and inside the boat were several large yellowfin tuna. The American complimented the Mexican on the quality of his fish.'
 });
+app.use(express.static('static'));
 
-app.get('/', function (req, res) {
-  res.send("Welcome to your Blog API");
+app.get('/api', function (req, res) {
+  res.send("Welcome to your Blog API: Settings: " + db_conf.hostname);
 });
 
 app.get('/api/posts', function (req, res) {
