@@ -3,3 +3,4 @@ npm-debug.log
 
 *.css.map
 *.sass-cache
+static/compiled/css
