@@ -1,39 +1,41 @@
 
-.landingpage-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  height: 100vh;
+.landingpage-nav {
+  margin: 1rem;
 
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  justify-content: space-around;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
 
-  a {
-    text-decoration: none;
-    font-size: 4rem;
-    color: lighten($base-txt-color, 100%);
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
-
-  span {
-    overflow: hidden;
-    min-width: 50%;
-    height: 200px;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-around;
 
-    border-radius: 0 8% 0 8%;
+    a {
+      text-decoration: none;
+      font-size: 4rem;
+      color: lighten($txt-color, 100%);
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 
-    &:hover, &:focus {
-      box-shadow: 0 0 10px gray;
-      transition: all 1s ease;
+    span {
+      overflow: hidden;
+      min-width: 50%;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      border-radius: 0 8% 0 8%;
+
+      &:hover, &:focus {
+        box-shadow: 0 0 10px gray;
+        transition: all 1s ease;
+      }
     }
   }
-
-
 }
 
 .nav-imagecontainer {
@@ -42,18 +44,9 @@
   display: block;
 }
 
-@media only screen and (min-width: 300px) {
-// Small devices (Smartphones, ...)
-}
-
-
 // Tablets / Desktops
 @media (min-width: $screen-medium) {
   .landingpage-nav ul {
-  //   a {
-  //     width: 100%;
-  //   }
-  //
     li {
       width: 80%;
       &:nth-child(1) { align-self: flex-start; }
