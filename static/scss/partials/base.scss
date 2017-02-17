@@ -1,0 +1,7 @@
+@import '../modules/config.scss';
+@import '../modules/colors.scss';
+// generell styling
+body {
+  background-color: $base-bg-color;
+  box-sizing: border-box;
+}
