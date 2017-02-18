@@ -1,9 +1,19 @@
 @import '../modules/config.scss';
 @import '../modules/colors.scss';
+
 // generell styling
 body {
   background-color: $bg-color;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: lighten($nav-color, 20%);
+  }
 }
