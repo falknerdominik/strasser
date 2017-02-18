@@ -1,13 +1,35 @@
 footer {
+  padding: 0.5rem;
+
   min-height: 2rem;
   background-color: $footer-color;
+  color: white;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
 
-  a {
-    color: lighten($txt-color, 100%);
+}
+
+@media (min-width: $screen-medium) {
+  footer {
+    hr {
+      font-size: 1rem; // reset margin-top
+    }
+    .sitemap {
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          padding: 0 0 .5rem 0;
+          font-size: 1rem;
+        }
+      }
+      font-size: 2rem;
+    }
   }
 }
