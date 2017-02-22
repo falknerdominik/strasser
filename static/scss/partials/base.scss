@@ -10,8 +10,12 @@ body {
   margin: 0;
 }
 
-.link {
-  color: white;
+em {
+  font-size: 2rem;
+}
+
+a {
+  color: $bg-color;
   text-decoration: none;
 
   &:hover {

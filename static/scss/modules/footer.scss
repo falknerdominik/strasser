@@ -28,10 +28,17 @@ footer {
         width: 100%;
         padding: 10px;
 
-        &:hover {
+        &:hover, &.active {
           background-color: $bg-color;
           a {
-            color: black;
+            color: $footer-color;
+          }
+        }
+
+        &.active {
+          a {
+            pointer-events: none;
+            cursor: default;
           }
         }
       }
@@ -49,16 +56,15 @@ footer {
   footer {
     padding: 0.5rem;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 
     hr { display: none; }
 
-    h3 {
-      margin: 0;
-    }
+    h3 { margin: 0; }
 
     .sitemap {
       display: flex;
+      align-items: baseline;
 
       h3 {
         font-size: 2rem;
@@ -69,7 +75,7 @@ footer {
         padding: 0;
         margin: 0;
         list-style: none;
-        width: 50%;
+        width: 70%;
         flex-direction: row;
         align-items: baseline;
 
