@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="yes"?>
+<svg version="1.1" viewBox="0.0 0.0 400 200" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Top -->
+      <rect x="70" y="10" width="200" height="130" fill="transparent" rx="190" stroke="skyblue" stroke-width="10" />
+
+    <!-- Body -->
+      <rect x="10" y="70" width="340" height="80" fill="skyblue" rx="30" />
+
+    <g>
+    <!-- Left line -->
+      <line x1="105" y1="25" x2="105" y2="80" stroke="skyblue" stroke-width="10"/>
+
+    <!-- Right line -->
+      <line x1="195" y1="10" x2="195" y2="80" stroke="skyblue" stroke-width="10"/>
+    </g>
+
+    <g>
+    <!-- Left bumper -->
+      <rect x="0" y="110" width="30" height="15" fill="#999" rx="10" />
+
+    <!-- Right bumper -->
+      <rect x="325" y="110" width="40" height="20" fill="#999" rx="10" />
+    </g>
+
+    <!-- Left wheel -->
+    <g>
+      <circle r="40px" fill="#222" stroke="white" stroke-width="7" cx="90" cy="140"/>
+      <circle r="15px" fill="#555" cx="90" cy="140"/>
+    </g>
+
+    <!-- Right wheel -->
+    <g>
+      <circle r="40px" fill="#222" stroke="white" stroke-width="7" cx="270" cy="140"/>
+      <circle r="15px" fill="#555" cx="270" cy="140"/>
+    </g>
+
+    <g>
+    <!-- Gold light -->
+      <circle r="15px" fill="gold" cx="340" cy="90"/>
+
+    <!-- Orange light -->
+      <circle r="7px" fill="crimson" cx="15" cy="90"/>
+    </g>
+</svg>
