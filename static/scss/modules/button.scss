@@ -1,7 +1,12 @@
 .button {
-  background-color: #DDD;
+  background-color: $btn-color;
   padding: .8rem;
   border: 0 none;
   cursor:pointer;
   border-radius: 5px;
+
+  &:hover, &:focus, &:active {
+    background-color: darken($btn-color, 10%);
+    transition: background-color 1s ease-in-out;
+  }
 }
