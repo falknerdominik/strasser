@@ -38,6 +38,8 @@ main {
   }
 }
 
+.error { background-color: $error-color; }
+
 @media (min-width: $screen-medium) {
   main .contact {
     flex-direction: row;
