@@ -1,0 +1,61 @@
+@import "button.scss";
+// content
+main {
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    form {
+      display: flex;
+      flex-direction: column;
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: .5rem;
+        width: 100%;
+        border: none;
+
+        label {
+          flex-basis: 20%;
+          padding: 0.2rem;
+          text-align: center;
+          background-color: #DDD;
+          border: 1px solid darken(#DDD, 20%);
+        }
+
+        input { flex-grow: 1; }
+
+        input[type="text"], input[type="email"] { padding: .2rem; }
+        textarea { padding: 0.2rem; resize: vertical; }
+      }
+    }
+  }
+}
+
+@media (min-width: $screen-medium) {
+  main .contact {
+    flex-direction: row;
+  }
+
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    form {
+      align-items: flex-end;
+      div {
+        justify-content: flex-start;
+
+        label { flex-basis: 5%; }
+        textarea { width: 100%; }
+      }
+    }
+  }
+}
