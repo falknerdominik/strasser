@@ -1,7 +1,5 @@
 var form;
-var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-var nameRegex = /^[a-za-z\s]{6,20}$/;
-var txtRegex = /^[a-za-z\s]{30,600}$/;
+
 
 window.onload = function () {
   // attach eventHandler to form
@@ -12,28 +10,32 @@ window.onload = function () {
       form.addEventListener("submit", processForm);
   }
 
-  // disable submit button
-  form["submit"].disabled = true;
-
-  // validation onkeyup
-  form["email"].onkeyup = function () {
-    var isValid = validateInput(this, "error", emailRegex);
-    isValid ? form["submit"].disabled = false : form["submit"].disabled = true;
-  }
-
-  form["name"].onkeyup = function () {
-    var isValid = validateInput(this, "error", nameRegex);
-    isValid ? form["submit"].disabled = false : form["submit"].disabled = true;
-  }
-
-  form["text"].onkeyup = function () {
-    var isValid = validateInput(this, "error", txtRegex);
-    isValid ? form["submit"].disabled = false : form["submit"].disabled = true;
-  }
 }
 
 function processForm(e) {
   if (e.preventDefault) e.preventDefault();
+  // regex for validation
+  var nameRegex = /^[A-Za-z\s]{6,20}$/;
+  var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var txtRegex = /^[A-Za-z\s\?!.,]{30,600}$/;
+
+  isValid = validateInput(form["name"], "error", nameRegex);
+  isValid = isValid && validateInput(form["email"], "error", emailRegex);
+  isValid = isValid && validateInput(form["text"], "error", txtRegex);
+
+ if(isValid) {
+    // send request to api
+    var request = JSON.stringify({
+      name: form["name"].value.trim(),
+      email: form["email"].value.trim(),
+      text: form["text"].value.trim()
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/mail");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+    xhr.send(request);
+ }
 
   // You must return false to prevent the default form behavior
   return false;

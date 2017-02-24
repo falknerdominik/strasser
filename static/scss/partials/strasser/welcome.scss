@@ -1,0 +1,23 @@
+@import '../base.scss';
+
+// set base color
+$base-color: $blue;
+
+main {
+  display: flex;
+  flex-direction: column;
+  section {
+    flex-grow: 1;
+  }
+}
+
+img { width: 100%; margin: .2rem; }
+@media (min-width: $screen-medium) {
+  img { width: 25%; margin: 0 .8rem 0 .8rem; }
+}
+
+.img-left { float: left; }
+.img-right { float: right; }
+
+@import '../../modules/navigation.scss';
+@import '../../modules/footer.scss';
