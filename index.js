@@ -6,7 +6,8 @@ var db_conf = require('./db_config.json');
 var express = require('express');
 var bodyParser = require('body-parser');
 var sendmail = require('sendmail')();
-var mysql      = require('mysql');
+var mysql = require('mysql');
+var app = express();
 
 // get json to work with POST requests
 app.use(bodyParser.json()); // support json encoded bodies
@@ -14,28 +15,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var connection = mysql.createConnection({
   host     : db_conf.hostname,
   user     : db_conf.user,
-  password : db_conf.password
+  password : db_conf.password,
+  database : db_conf.database
 });
 
-var app = express();
-var posts = [];
-posts.push({
-    id: 0,
-    title: 'Lorem ipsum',
-    content: 'Lorem ipsum dolor sit amet, test link adipiscing elit. This is strong. Nullam dignissim convallis est. Quisque aliquam. This is emphasized. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.'
-});
-
-posts.push({
-    id: 1,
-    title: 'Pre formatted text',
-    content: 'Typographically, preformatted text is not the same thing as code. Sometimes, a faithful execution of the text requires preformatted text that may not have anything to do with code. Most browsers use Courier and that’s a good default — with one slight adjustment, Courier 10 Pitch over regular Courier for Linux users.'
-});
-
-posts.push({
-    id: 2,
-    title: 'Fish Business',
-    content: 'An American businessman took a vacation to a small coastal Mexican village on doctor’s orders. Unable to sleep after an urgent phone call from the office the first morning, he walked out to the pier to clear his head. A small boat with just one fisherman had docked, and inside the boat were several large yellowfin tuna. The American complimented the Mexican on the quality of his fish.'
-});
 
 // handle contact form - send email
 app.post('/api/mail', function (req, res) {
@@ -74,23 +57,48 @@ var server = app.listen(8080, function () {
 });
 
 // API
-app.get('/api/projects/create', function (req, res) {
-  res.send(posts);
+app.post('/api/projects/create', function (req, res) {
+  connection.connect();
+  let sql = "INSERT INTO projects VALUES(?, ?, ?, ?);"
+  // it auto incrments
+  connection.query(sql, [null, "project" + String(i), "Beispiel Beschreibung", "img/bagger1.jpg;"],
+    function(err, rows, fields) { if (err) throw err; });
+  connection.end();
 });
-app.get('/api/projects/read', function (req, res) {
+
+app.post('/api/projects/read', function (req, res) {
   connection.connect();
 
-  connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-    if (err) throw err;
-    console.log('The solution is: ', rows[0].solution);
+  let sql = "SELECT * FROM projects;";
+  connection.query(sql, function(err, rows, fields) {
+    if (err) throw res.status(500).send();
+    res.send(rows);
+    console.log(rows);
   });
 
   connection.end();
-  res.send(posts);
 });
-app.get('/api/projects/update', function (req, res) {
-  res.send(posts);
+
+app.post('/api/projects/update', function (req, res) {
+  connection.connect();
+  let sql = "UPDATE projects SET name = ?, description = ?, imgs_path = ? WHERE id = ?;";
+  connection.query(sql, [req.body.name, req.body.description, req.body.imgs_path, req.body.id],
+    function(err, rows, fields) {
+      if (err) throw res.status(500).send();
+      res.send(200);
+      console.log(rows);
+    });
+  connection.end();
 });
+
 app.get('/api/projects/delete', function (req, res) {
-  res.send(posts);
+  connection.connect();
+  let sql = "DROP FROM projects WHERE id = ?";
+  connection.query(sql, [req.body.id],
+    function(err, rows, fields) {
+      if (err) throw res.status(500).send();
+      res.send(200);
+      console.log(rows);
+    });
+  connection.end();
 });

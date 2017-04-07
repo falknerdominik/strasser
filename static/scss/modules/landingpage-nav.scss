@@ -38,10 +38,10 @@
   }
 }
 
-.nav-imagecontainer {
-  background-image: url(http://placehold.it/1200x200);
-  background-size: contain;
-  display: block;
+.landingpage-nav .nav-imagecontainer {
+  background-image: url(../../img/farming.jpg);
+  background-position-x: 40%;
+  background-position-y: 40%;
 }
 
 // Tablets / Desktops

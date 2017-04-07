@@ -1,14 +1,16 @@
 {
-  "name": "WDP3",
+  "name": "website-strasser",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "setup:upgrade": "node setup/database_setup.js",
+    "install:dummy": "node setup/database_insert_dummydata.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dominik Falkner",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.16.1",
     "express": "^4.14.0",
